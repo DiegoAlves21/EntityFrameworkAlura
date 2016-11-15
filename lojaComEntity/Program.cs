@@ -1,4 +1,5 @@
-﻿using System;
+﻿using lojaComEntity.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,18 @@ namespace lojaComEntity
     {
         static void Main(string[] args)
         {
+            EntidadesContext contexto = new EntidadesContext();
+            Usuario diego = new Usuario()
+            {
+                Nome = "Diego",
+                Senha = "123"
+            };
+            contexto.Usuarios.Add(diego);
+            contexto.SaveChanges();
+            contexto.Dispose();
+
+            Console.WriteLine("Salvou o usuário");
+            Console.ReadLine();
         }
     }
 }
