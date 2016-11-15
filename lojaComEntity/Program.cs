@@ -11,17 +11,20 @@ namespace lojaComEntity
     {
         static void Main(string[] args)
         {
-            EntidadesContext contexto = new EntidadesContext();
-            Usuario diego = new Usuario()
-            {
-                Nome = "Diego",
-                Senha = "123"
-            };
-            contexto.Usuarios.Add(diego);
-            contexto.SaveChanges();
-            contexto.Dispose();
+            UsuarioDao dao = new UsuarioDao();
+            Usuario diego = dao.BuscarPorId(1);
+            diego.Nome = "Diego Alves";
+            dao.SaveChanges();
 
-            Console.WriteLine("Salvou o usuário");
+            //Usuario lucas = new Usuario()
+            //{
+            //    Nome = "lucas",
+            //    Senha = "123"
+            //};
+            //manipulador.Salva(lucas);
+
+            //Console.WriteLine("Salvou o usuário");
+            //Console.WriteLine(diego.Nome);
             Console.ReadLine();
         }
     }
