@@ -13,14 +13,23 @@ namespace lojaComEntity
         static void Main(string[] args)
         {
             EntidadesContext contexto = new EntidadesContext();
+            ProdutoDao dao = new ProdutoDao(contexto);
 
-            var busca = from p in contexto.Produtos select p;
-            IList<Produto> resultado = busca.ToList();
+            var resultado = dao.BuscaPorNomePrecoNomeCategoria(null, 25, null);
 
-            foreach(var produto in resultado)
+            foreach (var p in resultado)
             {
-                Console.WriteLine(produto.Nome);
+                Console.WriteLine(p.Nome);
             }
+
+
+            //var busca = from p in contexto.Produtos select p;
+            //IList<Produto> resultado = busca.ToList();
+
+            //foreach(var produto in resultado)
+            //{
+            //    Console.WriteLine(produto.Nome);
+            //}
 
 
             //var categoria = contexto.Categorias.Include(c => c.Produtos).FirstOrDefault(c => c.ID == 1);
