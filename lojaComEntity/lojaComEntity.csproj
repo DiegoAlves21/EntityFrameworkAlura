@@ -129,12 +129,18 @@
   <ItemGroup>
     <Compile Include="EntidadesContext.cs" />
     <Compile Include="Entidades\Categoria.cs" />
+    <Compile Include="Entidades\PessoaFisica.cs" />
+    <Compile Include="Entidades\PessoaJuridica.cs" />
     <Compile Include="Entidades\Produto.cs" />
     <Compile Include="Entidades\ProdutoVenda.cs" />
     <Compile Include="Entidades\Venda.cs" />
     <Compile Include="Migrations\20161117235059_CriaVenda.cs" />
     <Compile Include="Migrations\20161117235059_CriaVenda.designer.cs">
       <DependentUpon>20161117235059_CriaVenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\20161118000603_tiposUsuario.cs" />
+    <Compile Include="Migrations\20161118000603_tiposUsuario.designer.cs">
+      <DependentUpon>20161118000603_tiposUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="ProdutoDao.cs" />
     <Compile Include="Entidades\Usuario.cs" />

@@ -12,16 +12,35 @@ namespace lojaComEntity
     {
         static void Main(string[] args)
         {
-            EntidadesContext ctx = new EntidadesContext();
-            Venda venda = ctx.Vendas.Include(v => v.ProdutosVenda).ThenInclude(pv => pv.Produto).FirstOrDefault();
+            EntidadesContext contexto = new EntidadesContext();
 
-            foreach (var pvv in venda.ProdutosVenda)
+            PessoaFisica pf = new PessoaFisica()
             {
-                Console.WriteLine(pvv.Produto.Nome);
-            }
+                Nome = "Guilherme",
+                CPF = "14875186762",
+                Senha = "123"
+            };
 
-            ctx.Dispose();
+            contexto.PessoasFisicas.Add(pf);
+
+            PessoaJuridica pj = new PessoaJuridica()
+            {
+                Nome = "Guilherme",
+                CNPJ = "789",
+                Senha = "123"
+            };
+
+            contexto.PessoasJuridica.Add(pj);
+
+            contexto.SaveChanges();
             Console.ReadLine();
+
+            //Venda venda = ctx.Vendas.Include(v => v.ProdutosVenda).ThenInclude(pv => pv.Produto).FirstOrDefault();
+
+            //foreach (var pvv in venda.ProdutosVenda)
+            //{
+            //    Console.WriteLine(pvv.Produto.Nome);
+            //}
 
             //EntidadesContext ctx = new EntidadesContext();
             //var usuarioDao = new UsuarioDao();
