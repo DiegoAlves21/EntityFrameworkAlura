@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace lojaComEntity.Entidades
 {
-    public class Produto
+    public class Venda
     {
+        public Venda()
+        {
+            this.ProdutosVenda = new List<ProdutoVenda>();
+        }
         public int ID { get; set; }
-        public string Nome { get; set; }
-        public decimal Preco { get; set; }
-        public virtual Categoria Categoria { get; set; }
-        public int CategoriaID { get; set; }
+        public int UsuarioID { get; set; }
+        public virtual Usuario Cliente { get; set; }
         public virtual IList<ProdutoVenda> ProdutosVenda { get; set; }
     }
 }

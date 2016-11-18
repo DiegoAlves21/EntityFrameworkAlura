@@ -12,15 +12,60 @@ namespace lojaComEntity
     {
         static void Main(string[] args)
         {
-            EntidadesContext contexto = new EntidadesContext();
-            ProdutoDao dao = new ProdutoDao(contexto);
+            EntidadesContext ctx = new EntidadesContext();
+            Venda venda = ctx.Vendas.Include(v => v.ProdutosVenda).ThenInclude(pv => pv.Produto).FirstOrDefault();
 
-            var resultado = dao.BuscaPorNomePrecoNomeCategoria(null, 25, null);
-
-            foreach (var p in resultado)
+            foreach (var pvv in venda.ProdutosVenda)
             {
-                Console.WriteLine(p.Nome);
+                Console.WriteLine(pvv.Produto.Nome);
             }
+
+            ctx.Dispose();
+            Console.ReadLine();
+
+            //EntidadesContext ctx = new EntidadesContext();
+            //var usuarioDao = new UsuarioDao();
+            //var produtoDao = new ProdutoDao(ctx);
+
+            //var renan = usuarioDao.BuscarPorId(1);
+            //var venda = new Venda()
+            //{
+            //    Cliente = renan
+            //};
+
+            //ctx.Vendas.Add(venda);
+
+            //var primeiroProduto = produtoDao.BuscarPorId(1);
+            //var segundoProduto = produtoDao.BuscarPorId(2);
+
+            //var produtoVenda1 = new ProdutoVenda()
+            //{
+            //    Venda = venda,
+            //    Produto = primeiroProduto
+            //};
+
+            //ctx.ProdutosVenda.Add(produtoVenda1);
+            //var produtoVenda2 = new ProdutoVenda()
+            //{
+            //    Venda = venda,
+            //    Produto = segundoProduto
+            //};
+
+            //ctx.ProdutosVenda.Add(produtoVenda2);
+
+            //ctx.SaveChanges();
+
+            //ctx.Dispose();
+
+            //EntidadesContext contexto = new EntidadesContext();
+            //ProdutoDao dao = new ProdutoDao(contexto);
+
+            //var resultado = dao.BuscaPorNomePrecoNomeCategoria(null, 25, null);
+
+            //foreach (var p in resultado)
+            //{
+            //    Console.WriteLine(p.Nome);
+            //}
 
 
             //var busca = from p in contexto.Produtos select p;
@@ -74,7 +119,7 @@ namespace lojaComEntity
 
             //Console.WriteLine("Salvou o usuário");
             //Console.WriteLine(diego.Nome);
-            Console.ReadLine();
+            //Console.ReadLine();
         }
     }
 }

@@ -38,5 +38,10 @@ namespace lojaComEntity
 
             return busca.ToList();
         }
+
+        public Produto BuscarPorId(int id)
+        {
+            return contexto.Produtos.FirstOrDefault(p => p.ID == id);
+        }
     }
 }

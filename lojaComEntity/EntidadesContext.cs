@@ -14,12 +14,20 @@ namespace lojaComEntity
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Venda> Vendas { get; set; }
+        public DbSet<ProdutoVenda> ProdutosVenda { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string stringConexao = ConfigurationManager.ConnectionStrings["lojaConnectionString"].ConnectionString;
             optionsBuilder.UseSqlServer(stringConexao);
             base.OnConfiguring(optionsBuilder);
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProdutoVenda>().HasKey(pv => new { pv.VendaId, pv.ProdutoId });
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
